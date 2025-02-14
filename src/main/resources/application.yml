@@ -1,0 +1,35 @@
+server:
+  port: 16688
+  tomcat:
+    accessLog:
+      enabled: true
+      directory: access_log
+      prefix: access_log
+      pattern: '%h %l %u %t "%r" %s %b "%{Referer}i" "%{User-Agent}i" "%{X-Forwarded-For}i" "%{X-Real-IP}i" %D %S "%U" %v'
+    basedir: ./tomcat
+    accept-count: 2000 #最大等待数
+    max-connections: 10000 #最大连接数
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 20MB
+  profiles:
+    active: dev
+
+logging:
+  level:
+    ai:
+      esp:
+        com: info
+
+feign:
+  httpclient:
+    enabled: true
+  client:
+    config:
+      default:
+        loggerLevel: full
+        connect-timeout: 100000
+        read-timeout: 100000
