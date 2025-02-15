@@ -54,8 +54,8 @@ public class ClientConfig {
     @Value("${client.llm.server}")
     private String llmServer;
 
-    @Value("${client.llm.appKey}")
-    private String llmAppKey;
+    @Value("${client.llm.apiKey}")
+    private String llmApiKey;
 
     @Value("${client.llm.llm}")
     private String llmModel;
