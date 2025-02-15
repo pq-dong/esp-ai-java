@@ -19,6 +19,7 @@ public class MessageService {
     @Resource
     private ClientService clientService;
 
+
     public Map<String, Object> parseUrlParams(String query) {
         Map<String, Object> params = new HashMap<>();
         if (query != null && !query.isEmpty()) {
@@ -57,7 +58,7 @@ public class MessageService {
             // 根据类型执行不同操作
             switch (type) {
                 case "start":
-                    clientService.start(commArgs);
+                    clientService.start(deviceId);
                     break;
                 case "iat_end":
                     iat_end(commArgs);
@@ -105,6 +106,6 @@ public class MessageService {
     }
 
     public void handleStopMessage(String deviceId){
-        return;
+        clientService.stopSession(deviceId, "设备断开");
     }
 }

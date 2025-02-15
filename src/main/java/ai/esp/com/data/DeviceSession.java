@@ -19,11 +19,17 @@ public class DeviceSession {
 
     private String token;
 
+    private String sessionId;
+
     private boolean started;
 
     private boolean stopped;
 
     private Session ws;
+
+    private Session iatWs;
+
+    private Session llmWs;
 
     private Map<String, Object> userConfig;
 
@@ -33,7 +39,7 @@ public class DeviceSession {
 
     private Map<String, Object> ttsList;
 
-    private List<Object> awaitOutTTS;
+    private List<Runnable> awaitOutTTS;
 
     private Map<String, Object> clientParams;
 
@@ -46,5 +52,7 @@ public class DeviceSession {
     private Integer usedFlow;
 
     private Map<String, Object> readPinCbs;
+
+    private PlatformStatus platformStatus;
 
 }
