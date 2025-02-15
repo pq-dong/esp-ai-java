@@ -1,13 +1,14 @@
 package ai.esp.com.config;
 
 
-import ai.esp.com.data.DeviceInfo;
+import ai.esp.com.data.DeviceSession;
 import ai.esp.com.data.Intention;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Data
 @Component
@@ -16,7 +17,7 @@ public class GlobalConfig {
     @Resource
     private ClientConfig clientConfig;
 
-    private Map<String, DeviceInfo> devices;
+    private ConcurrentHashMap<String, DeviceSession> devices;
 
     //todo: 这个实例是什么？
     private Object instance;
@@ -33,7 +34,7 @@ public class GlobalConfig {
 
     private Map<String, Object> cacheTTS;
     public GlobalConfig() {
-        this.devices = new HashMap<>();
+        this.devices = new ConcurrentHashMap<>();
         this.sessionIds = new HashMap<>();
         this.sessionIds.put("cache_du", "1000");
         this.sessionIds.put("cache_hello", "1001");

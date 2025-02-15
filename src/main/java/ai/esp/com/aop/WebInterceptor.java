@@ -1,7 +1,7 @@
 package ai.esp.com.aop;
 
 import ai.esp.com.data.CurrentRequest;
-import ai.esp.com.data.DeviceInfo;
+import ai.esp.com.data.DeviceSession;
 import ai.esp.com.data.ResponseMessage;
 import cn.hutool.http.ContentType;
 import cn.hutool.json.JSONUtil;
@@ -45,7 +45,7 @@ public class WebInterceptor implements HandlerInterceptor {
             if (StringUtils.isEmpty(token)) {
                 return forbid(response, requestURI, ResponseMessage.Type.NEED_LOGIN);
             } else {
-                CurrentRequest.setDevice(DeviceInfo.builder().token(token).build());
+                CurrentRequest.setDevice(DeviceSession.builder().token(token).build());
                 return true;
             }
         }

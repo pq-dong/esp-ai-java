@@ -1,11 +1,8 @@
 package ai.esp.com.controller;
 
 import ai.esp.com.data.ResponseMessage;
-import ai.esp.com.service.DeviceService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
-
-import javax.annotation.Resource;
 
 @Slf4j
 @RestController

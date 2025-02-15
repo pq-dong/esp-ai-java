@@ -14,11 +14,11 @@ public class CurrentRequest {
         store.set(new HashMap<>());
     }
 
-    public static DeviceInfo getDevice() {
-        return (DeviceInfo) store.get().get(KEY_DEVICE);
+    public static DeviceSession getDevice() {
+        return (DeviceSession) store.get().get(KEY_DEVICE);
     }
 
-    public static void setDevice(DeviceInfo deviceInfo) {
+    public static void setDevice(DeviceSession deviceInfo) {
         store.get().put(KEY_DEVICE, deviceInfo);
     }
     
