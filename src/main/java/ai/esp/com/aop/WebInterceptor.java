@@ -20,7 +20,7 @@ import java.io.OutputStream;
 
 @Component
 @Slf4j
-public class UserInterceptor implements HandlerInterceptor {
+public class WebInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handleObject) {

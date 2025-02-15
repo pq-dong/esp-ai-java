@@ -1,6 +1,6 @@
 package ai.esp.com.config;
 
-import ai.esp.com.aop.UserInterceptor;
+import ai.esp.com.aop.WebInterceptor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
@@ -17,7 +17,7 @@ import javax.annotation.Resource;
 public class WebConfig implements WebMvcConfigurer {
 
     @Resource
-    private UserInterceptor userInterceptor;
+    private WebInterceptor userInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
