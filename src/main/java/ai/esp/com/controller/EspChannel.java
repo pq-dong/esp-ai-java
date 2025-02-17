@@ -2,7 +2,9 @@ package ai.esp.com.controller;
 
 import ai.esp.com.config.GlobalConfig;
 import ai.esp.com.data.DeviceSession;
+import ai.esp.com.data.Send2ClientMessage;
 import ai.esp.com.service.MessageService;
+import cn.hutool.json.JSONUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -48,7 +50,11 @@ public class EspChannel implements ApplicationContextAware {
         if (deviceId == null || deviceId.isEmpty()) {
             log.error("设备异常，未读取到 device_id");
             try {
-                session.getBasicRemote().sendText("{\"type\": \"error\", \"message\": \"设备异常，未读取到 device_id\", \"code\": \"004\"}");
+                Send2ClientMessage send2ClientMessage = Send2ClientMessage.builder().type("error")
+                        .code("004")
+                        .message("设备异常，未读取到 device_id")
+                        .build();
+                session.getBasicRemote().sendText(JSONUtil.toJsonStr(send2ClientMessage));
                 session.close();
             } catch (IOException e) {
                 log.error("Error closing connection: " + e.getMessage());

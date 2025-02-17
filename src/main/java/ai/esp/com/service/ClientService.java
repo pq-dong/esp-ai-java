@@ -4,6 +4,8 @@ import ai.esp.com.config.GlobalConfig;
 import ai.esp.com.data.CurrentRequest;
 import ai.esp.com.data.DeviceSession;
 import ai.esp.com.data.PlatformStatus;
+import ai.esp.com.data.Send2ClientMessage;
+import cn.hutool.json.JSONUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
@@ -94,7 +96,7 @@ public class ClientService {
                 log.info("收到stop消息，需要打断会话");
                 // 停止会话
                 if (ws != null) {
-                    ws.getBasicRemote().sendText("{\"type\": \"session_stop\"}");
+                    ws.getBasicRemote().sendText(JSONUtil.toJsonStr(Send2ClientMessage.builder().type("session_stop").build()));
                 }
 
                 // 清理设备会话
@@ -107,7 +109,7 @@ public class ClientService {
                 status.setPrevPlayAudioIng(false);
                 status.setStartAudioTime(null);
                 status.setPlayAudioOnEnd(false);
-                status.setPlayAudioSeek(0);
+                status.setPlayAudioSeek(0L);
 
 
                 // 停止定时器
@@ -174,7 +176,10 @@ public class ClientService {
             // 发送 session_start 消息
             // 假设 ws.sendText() 为 WebSocket 发送消息的方法
             if (deviceSession.getWs() != null) {
-                deviceSession.getWs().getBasicRemote().sendText("{\"type\": \"session_start\", \"session_id\": \"" + sessionId + "\"}");
+                Send2ClientMessage send2ClientMessage = Send2ClientMessage.builder().type("session_start")
+                        .sessionId(sessionId)
+                        .build();
+                deviceSession.getWs().getBasicRemote().sendText(JSONUtil.toJsonStr(send2ClientMessage));
             }
 
             // 初始化用户会话数据

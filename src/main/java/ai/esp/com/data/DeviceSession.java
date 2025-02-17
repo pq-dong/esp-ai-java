@@ -55,4 +55,10 @@ public class DeviceSession {
 
     private PlatformStatus platformStatus;
 
+    private byte[] asrBufferCache;
+
+    private Runnable sendPcm;
+
+    private Runnable iatEndQueue;
+
 }
