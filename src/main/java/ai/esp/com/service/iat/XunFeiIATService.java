@@ -13,6 +13,7 @@ public class XunFeiIATService {
     private IATCommonService iatCommonService;
 
     public void IAT_FN(String sessionId, String deviceId){
+
         return;
     }
 }

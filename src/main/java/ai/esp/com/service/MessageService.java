@@ -19,6 +19,9 @@ public class MessageService {
     @Resource
     private ClientService clientService;
 
+    @Resource
+    private IATService iatService;
+
 
     public Map<String, Object> parseUrlParams(String query) {
         Map<String, Object> params = new HashMap<>();
@@ -61,16 +64,16 @@ public class MessageService {
                     clientService.start(deviceId);
                     break;
                 case "iat_end":
-                    iat_end(commArgs);
+                    iatService.iatEnd(commArgs);
                     break;
                 case "client_out_audio_ing":
-                    client_out_audio_ing_fn(commArgs);
+                    clientService.clientOutAudioIngFn(commArgs);
                     break;
                 case "client_out_audio_over":
-                    client_out_audio_over(commArgs);
+                    clientService.clientOutAudioOver(commArgs);
                     break;
                 case "play_audio_ws_conntceed":
-                    play_audio_ws_conntceed(commArgs);
+                    clientService.playAudioWsConntceed(commArgs);
                     break;
                 case "tts":
                     String text = (String) commArgs.get("text");

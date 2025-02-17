@@ -54,7 +54,8 @@ public class ClientService {
             }
             newSession(deviceId);
             // 启动 IAT 服务
-            startIAT(deviceId);
+            deviceSession.setStarted(true);
+            iatService.start(deviceId);
 
         } catch (Exception e) {
             log.error("[" + deviceId + "] start 消息错误： " + e.getMessage());
@@ -62,13 +63,6 @@ public class ClientService {
     }
 
 
-    private void startIAT(String deviceId) {
-        // Check if device is still connected
-        DeviceSession deviceSession = globalConfig.getDevices().get(deviceId);
-        if (deviceSession == null) return;
-        deviceSession.setStarted(true);
-        iatService.start(deviceId);
-    }
 
     public boolean stopSession(String deviceId, String at) {
         if (StringUtils.isEmpty(deviceId)) {
@@ -216,5 +210,17 @@ public class ClientService {
         } catch (Exception e) {
             log.error("处理 await_out_tts 队列时出现错误: " + e.getMessage());
         }
+    }
+
+    public void clientOutAudioIngFn(Map<String, Object> commArgs){
+        return;
+    }
+
+    public void clientOutAudioOver(Map<String, Object> commArgs){
+        return;
+    }
+
+    public void playAudioWsConntceed(Map<String, Object> commArgs){
+        return;
     }
 }

@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Map;
 
 @Slf4j
 @Service
@@ -36,5 +37,9 @@ public class IATService {
 
     //是个定时器，要清除定时器中的内容
     public void cancelIatEndFrameTimer(String deviceId){
+    }
+
+    public void iatEnd(Map<String, Object> commArgs){
+        return;
     }
 }
